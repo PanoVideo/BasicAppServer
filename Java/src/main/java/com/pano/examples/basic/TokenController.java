@@ -27,7 +27,7 @@ import java.util.UUID;
 @RestController
 public class TokenController {
 
-    private final static String TOKEN_URL = "https://api.pano.video/auth/token";
+    private final static String PANO_TOKEN_URL = "https://api.pano.video/auth/token";
     //put your appSecret here
     private final static String APP_SECRET = "xxxxx";
 
@@ -36,10 +36,10 @@ public class TokenController {
      * @return
      */
     @PostMapping("/app/login")
-    public String getToken(@RequestBody TokenRequest request) {
+    public String getToken(@RequestBody AppLoginRequest request) {
         URL url = null;
         try {
-            url = new URL(TOKEN_URL);
+            url = new URL(PANO_TOKEN_URL);
             JSONObject body = new JSONObject();
 
             body.put("userId", request.getUserId());

@@ -3,7 +3,7 @@ package com.pano.examples.basic;
 
 import java.io.Serializable;
 
-public class TokenRequest implements Serializable {
+public class AppLoginRequest implements Serializable {
 
     private String appId;
 
@@ -17,10 +17,10 @@ public class TokenRequest implements Serializable {
 
     private int channelDuration=60;
 
-    public TokenRequest() {
+    public AppLoginRequest() {
     }
 
-    public TokenRequest(String appId, String channelId, String userId, int privileges, int duration, int channelDuration) {
+    public AppLoginRequest(String appId, String channelId, String userId, int privileges, int duration, int channelDuration) {
         this.appId = appId;
         this.channelId = channelId;
         this.userId = userId;

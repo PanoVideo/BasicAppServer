@@ -5,14 +5,14 @@ Basic App Server for BasicVideoCall to get paon token
 ## 第一步 
 将相关参数填入BasicVideoCall，然后请求该App Server 获取token。
 
-启动该示例代码之后，你可以像这样类似发出请求
+启动该示例代码之后，你可以像这样发出类似请求
 ```shell script
 curl --location --request POST 'http://localhost:8080/app/login' \
 --header 'Content-Type: application/json' \
 --data-raw '{
     "appId": "xxx", 
-    "userId": "1234",
-    "channelId": "11111111",
+    "userId": "20190822",
+    "channelId": "20190822",
     "duration": 800,
     "privileges": 0,
     "channelDuration": 12
