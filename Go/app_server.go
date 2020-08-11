@@ -37,8 +37,8 @@ type SdkToken struct {
 }
 
 func main() {
-	//put your appSecret here
-	appSecret := "xxx"
+	//put your APP_SECRET here
+	const APP_SECRET = "xxx"
 
 	const PANO_TOKEN_URL = "https://api.pano.video/auth/token"
 
@@ -72,7 +72,7 @@ func main() {
 			return
 		}
 		tokenReq.Header.Set("Content-Type", "application/json")
-		tokenReq.Header.Set("Authorization", "PanoSign "+generatePanoSign(req.AppId, appSecret))
+		tokenReq.Header.Set("Authorization", "PanoSign "+generatePanoSign(req.AppId, APP_SECRET))
 		rand.Seed(time.Now().UnixNano())
 		tokenReq.Header.Set("Tracking-Id", string(rand.Intn(100000)))
 
