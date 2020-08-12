@@ -1,4 +1,4 @@
-package Go
+package main
 
 import (
 	"bytes"
@@ -52,6 +52,16 @@ func main() {
 			c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 			return
 		}
+		if req.Duration == 0 {
+			req.Duration = 1234
+		}
+		if req.ChannelDuration == 0 {
+			req.ChannelDuration = 60
+		}
+		if req.UserId == "" {
+			req.UserId = "20190822"
+		}
+
 		postBody := PanoTokenRequest{
 			ChannelId:       req.ChannelId,
 			UserId:          req.UserId,
