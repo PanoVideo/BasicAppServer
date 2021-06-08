@@ -48,8 +48,12 @@ public class TokenController {
             body.put("privileges", 0);
             body.put("channelDuration", request.getChannelDuration());
 
-            JSONObject jsonObject = postAndParseJSON(url, body.toString(), request.getAppId());
-            return (String) jsonObject.get("token");
+            Object json = postAndParseJSON(url, body.toString(), request.getAppId());
+            if (json instanceof JSONObject) {
+                JSONObject tokenRes = (JSONObject) json;
+                return (String) tokenRes.get("token");
+            }
+            return json.toString();
         } catch (MalformedURLException e) {
             e.printStackTrace();
         } catch (NoSuchAlgorithmException e) {
@@ -87,7 +91,7 @@ public class TokenController {
     }
 
 
-    private static JSONObject postAndParseJSON(URL url, String postData, String appId) throws IOException,
+    private static Object postAndParseJSON(URL url, String postData, String appId) throws IOException,
             InvalidKeyException,
             NoSuchAlgorithmException {
         HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
@@ -104,6 +108,6 @@ public class TokenController {
         urlConnection.getOutputStream()
                 .write(postData.getBytes(StandardCharsets.UTF_8));
         JSONTokener jsonTokener = new JSONTokener(urlConnection.getInputStream());
-        return new JSONObject(jsonTokener);
+        return jsonTokener.nextValue();
     }
 }
